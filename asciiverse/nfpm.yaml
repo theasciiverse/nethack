@@ -1,0 +1,56 @@
+# System packages (.deb, .rpm, .apk, Arch) for NetHack, built by nfpm from
+# the same static Linux build as the av archive (asciiverse/build.sh, out/).
+# The release workflow sets VERSION, RELEASE (our packaging release) and
+# ARCH (amd64 or arm64).
+#
+# No .desktop file on purpose: av is the one place titles are started from,
+# so Asciiverse packages never add menu entries (asciiverse/CLAUDE.md).
+#
+# The binary looks for its data beside itself first, then in
+# /usr/share/nethack, the HACKDIR compiled in by asciiverse/hints. Nothing
+# is installed setgid and nothing is written under /usr or /var: each
+# player's record, saves, bones and dumplogs go to ~/.local/share/nethack.
+name: nethack
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: ${RELEASE}
+section: games
+priority: optional
+maintainer: Asciiverse <packages@asciiverse.sh>
+vendor: Asciiverse
+homepage: https://github.com/theasciiverse/nethack
+license: NGPL
+description: |
+  The classic dungeon exploration game.
+  Go down through the Mazes of Menace for the Amulet of Yendor, with your
+  pet at your side, in the tty interface (curses with
+  OPTIONS=windowtype:curses). By the NetHack DevTeam, version 5.0,
+  packaged by Asciiverse; saves and scores stay in the player's own
+  ~/.local/share/nethack.
+contents:
+  - src: out/nethack
+    dst: /usr/bin/nethack
+    file_info: { mode: 0755 }
+  - src: out/nhdat
+    dst: /usr/share/nethack/nhdat
+    file_info: { mode: 0644 }
+  - src: out/sysconf
+    dst: /usr/share/nethack/sysconf
+    type: config|noreplace
+    file_info: { mode: 0644 }
+  - src: out/symbols
+    dst: /usr/share/nethack/symbols
+    file_info: { mode: 0644 }
+  - src: out/license
+    dst: /usr/share/nethack/license
+    file_info: { mode: 0644 }
+  - src: dat/license
+    dst: /usr/share/doc/nethack/copyright
+    file_info: { mode: 0644 }
+  - src: doc/Guidebook.txt
+    dst: /usr/share/doc/nethack/Guidebook.txt
+    file_info: { mode: 0644 }
+  - src: doc/nethack.6
+    dst: /usr/share/man/man6/nethack.6
+    file_info: { mode: 0644 }
