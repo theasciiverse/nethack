@@ -1255,6 +1255,11 @@ dump_open_log(time_t now)
 #else
     fname = dump_fmtstr(DUMPLOG_FILE, buf, TRUE);
 #endif
+#ifdef AV_PATHS
+    /* Asciiverse: a relative DUMPLOGFILE is in the player's folder */
+    if (*fname != '/')
+        fname = (char *) fqname(fname, SCOREPREFIX, 0);
+#endif
     dumplog_file = fopen(fname, "w");
     dumplog_windowprocs_backup = windowprocs;
 

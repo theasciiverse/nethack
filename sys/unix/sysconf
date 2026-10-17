@@ -139,6 +139,9 @@ MAXPLAYERS=10
 #   %n player name
 #   %N first character of player name
 #DUMPLOGFILE=/tmp/nethack.%n.%d.log
+# Asciiverse: a relative name is in the player's folder,
+# $XDG_DATA_HOME/nethack (default ~/.local/share/nethack).
+DUMPLOGFILE=dumplog/%n.%d.txt
 
 # Number of bones file pools.
 # The pool you belong to is determined at game start. You will

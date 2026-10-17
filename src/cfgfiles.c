@@ -353,6 +353,14 @@ fopen_config_file(const char *filename, int src)
             return fp;
     }
 #endif /*__APPLE__*/
+#ifdef AV_PATHS
+    /* Asciiverse: without ~/.nethackrc, the player's folder holds it,
+       and #saveoptions writes it there */
+    Snprintf(tmp_config, sizeof tmp_config, "%snethackrc", av_playground());
+    set_configfile_name(tmp_config);
+    if ((fp = fopen(configfile, "r")) != (FILE *) 0)
+        return fp;
+#endif
     if (errno != ENOENT) {
         const char *details;
 
