@@ -1,3 +1,18 @@
+Play it with Asciiverse
+=======================
+
+With av, the Asciiverse client (https://asciiverse.sh):
+
+    av install nethack
+    av play nethack
+
+Or download the archive for your system from this repository's Releases,
+unpack it and run ./nethack (nethack.exe on Windows).
+
+The original README follows.
+
+------------------------------------------------------------------------
+
          NetHack 5.0.0 -- General information
 
 NetHack 5.0 is an enhancement to the dungeon exploration game NetHack,

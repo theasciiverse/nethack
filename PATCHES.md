@@ -86,3 +86,9 @@ Keys typed ahead very fast between the "Is this ok?" menu and the opening
 text can log `nhassert(ttyDisplay->toplin == TOPLINE_EMPTY)` to the
 paniclog (`win/tty/wintty.c`); seen only with scripted input, not at
 human speed. Not ours to change.
+
+## Ours
+
+- **How to play it, at the top of README.** A short note on installing and
+  starting it with av, or from a release archive; the original text follows
+  unchanged.
