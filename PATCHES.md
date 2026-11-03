@@ -51,12 +51,17 @@ Upstream changes are guarded by `#ifdef AV_PATHS`, defined only by
   off (`NOCRASHREPORT`, `NOPANICTRACE`: upstream would open a browser at
   nethack.org with `xdg-open` or `open`, or run gdb). On Linux
   `_GNU_SOURCE`, which Alpine's fortify headers need before `curses.h`.
+  `NOTPARMDECL` everywhere, as upstream's own hints have it: otherwise
+  `win/tty/termcap.c` declares `tparm()` again old-style over the
+  prototype in macOS's `curses.h`, which Apple clang rejects as
+  conflicting types.
 - `asciiverse/build.sh`: fully static Linux in Alpine (musl, ncursesw and
   zlib linked in), macOS per architecture (`CC_ARCH`, system ncurses and
   zlib). Lua 5.4.8, which NetHack 5 runs its levels in, is fetched from
   lua.org, checked against upstream's `submodules/CHKSUMS` (the build stops
   on a mismatch) and linked in statically as `lib/lua/liblua-5.4.8.a`, as
-  upstream's `make fetch-lua` does. Leaves the install in `out/`. The
+  upstream's `make fetch-lua` does (curl retries, lua.org sometimes
+  drops the connection). Leaves the install in `out/`. The
   Guidebook is not rebuilt (it needs nroff); the archive ships upstream's
   `doc/Guidebook.txt`.
 - `asciiverse/nfpm.yaml`: .deb, .rpm, .apk and Arch packages:
